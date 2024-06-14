@@ -1,19 +1,54 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
-import { PageProps } from '@/types';
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { Head } from "@inertiajs/react";
+import { PageProps } from "@/types";
+import Laundry from "../../assets/laundry.png";
+import Header from "@/Components/Header";
 
 export default function Dashboard({ auth }: PageProps) {
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
-        >
+        <AuthenticatedLayout user={auth.user}>
+            <Header />
             <Head title="Dashboard" />
+            <header className="w-full px-5 py-1 bg-gray-300 text-slate-600 flex items-center justify-start gap-1">
+                <i className="bx bx-current-location"></i>
+                <small>Yogyakarta</small>
+            </header>
+            <div className="carousel w-full h-32">
+                <div className="carousel-item w-full">
+                    <img
+                        src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg"
+                        className="w-full"
+                    />
+                </div>
+            </div>
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">You're logged in!</div>
+            <div className="py-2 flex items-center justify-start px-2 gap-2">
+                <button className="text-sm py-1 px-4 rounded-badge text-primary font-bold border border-primary">
+                    Laundry
+                </button>
+                <button className="text-sm py-1 px-4 rounded-badge text-primary font-bold border border-primary">
+                    ----
+                </button>
+                <button className="text-sm py-1 px-4 rounded-badge text-primary font-bold border border-primary">
+                    ----
+                </button>
+            </div>
+
+            <div className="p-2">
+                <div className="w-full mx-auto sm:px-6 lg:px-8">
+                    <div className="bg-secondary overflow-hidden shadow-sm rounded-lg flex items-center justify-center gap-2 px-2 text-black">
+                        <img src={Laundry} alt="" width={200} height={150} />
+                        <span className="flex flex-col gap-1">
+                            <h1>Shifa Laundry</h1>
+                            <p className="text-[0.7rem]">
+                                Jalan Seturan, No.123, Seturan, kec Seturan,
+                                Kabupaten Sleman, Daerah Istimewa Yogyakarta{" "}
+                            </p>
+                            <small>Jarak: 700m</small>
+                        </span>
+                        <button className="rounded-badge px-3 py-0.5 bg-green-500 text-sm text-white">
+                            Open
+                        </button>
                     </div>
                 </div>
             </div>
