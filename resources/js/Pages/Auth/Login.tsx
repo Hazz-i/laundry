@@ -50,8 +50,9 @@ export default function Login({
                             autoComplete="username"
                             isFocused={true}
                             onChange={(e) => setData("email", e.target.value)}
+                            placeholder="example@gmail.com"
                         />
-                        <i className="bx bxs-user absolute text-xl top-1.5 left-3.5 text-primary"></i>
+                        <i className="bx bxs-envelope absolute text-xl top-1.5 left-3.5 text-primary"></i>
                     </span>
 
                     <InputError message={errors.email} className="mt-2" />
@@ -69,6 +70,7 @@ export default function Login({
                             onChange={(e) =>
                                 setData("password", e.target.value)
                             }
+                            placeholder="Password"
                         />
 
                         <i className="bx bxs-lock absolute text-xl top-1.5 left-3.5 text-primary"></i>

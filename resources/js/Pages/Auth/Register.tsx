@@ -40,6 +40,26 @@ export default function Register() {
                             autoComplete="username"
                             isFocused={true}
                             onChange={(e) => setData("name", e.target.value)}
+                            placeholder="example@gmail.com"
+                        />
+                        <i className="bx bxs-envelope absolute text-xl top-1.5 left-3.5 text-primary"></i>
+                    </span>
+
+                    <InputError message={errors.name} className="mt-2" />
+                </div>
+
+                <div className="w-full mt-4">
+                    <span className="relative flex">
+                        <TextInput
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={data.name}
+                            className="block w-full pl-10"
+                            autoComplete="username"
+                            isFocused={true}
+                            onChange={(e) => setData("name", e.target.value)}
+                            placeholder="username"
                         />
                         <i className="bx bxs-user absolute text-xl top-1.5 left-3.5 text-primary"></i>
                     </span>
@@ -57,6 +77,7 @@ export default function Register() {
                             className="block w-full pl-10"
                             autoComplete="number"
                             onChange={(e) => setData("number", e.target.value)}
+                            placeholder="number"
                         />
                         <i className="bx bxs-phone absolute text-xl top-1.5 left-3.5 text-primary"></i>
                     </span>
@@ -76,6 +97,7 @@ export default function Register() {
                             onChange={(e) =>
                                 setData("password", e.target.value)
                             }
+                            placeholder="password"
                         />
 
                         <i className="bx bxs-lock absolute text-xl top-1.5 left-3.5 text-primary"></i>
@@ -95,6 +117,7 @@ export default function Register() {
                             onChange={(e) =>
                                 setData("password_confirmation", e.target.value)
                             }
+                            placeholder="confirm password"
                         />
 
                         <i className="bx bxs-lock absolute text-xl top-1.5 left-3.5 text-primary"></i>
