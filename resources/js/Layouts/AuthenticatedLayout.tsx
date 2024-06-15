@@ -1,10 +1,6 @@
 import { useState, PropsWithChildren, ReactNode } from "react";
-import ApplicationLogo from "@/Components/ApplicationLogo";
-import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import { User } from "@/types";
-import TextInput from "@/Components/TextInput";
-import Header from "@/Components/Header";
 
 const menuList = [
     {
@@ -25,12 +21,8 @@ const menuList = [
 ];
 
 export default function Authenticated({
-    user,
     children,
 }: PropsWithChildren<{ user: User }>) {
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
-
     return (
         <div className="min-h-screen bg-gray-100">
             <main>{children}</main>

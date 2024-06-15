@@ -2,7 +2,8 @@ import logoImage from "../../assets/logo.png";
 import { Link, Head } from "@inertiajs/react";
 import { PageProps } from "@/types";
 import PrimaryButton from "@/Components/PrimaryButton";
-import { useState } from "react";
+import React, { useState } from "react";
+import Maps from "@/Components/Maps";
 
 const listLayanan = [
     {
@@ -47,8 +48,9 @@ export default function Welcome({}: PageProps<{
     laravelVersion: string;
     phpVersion: string;
 }>) {
-    const [modalOpen, setModalOpen] = useState(false);
-    const [selectedLayanan, setSelectedLayanan] = useState<any>([{}]);
+    const [modalOpen, setModalOpen] = React.useState(false);
+    const [mapsOpen, setMapsOpen] = React.useState(false);
+    const [selectedLayanan, setSelectedLayanan] = React.useState<any>([{}]);
 
     const handleModal = (id: number) => {
         setModalOpen(true);
@@ -61,7 +63,7 @@ export default function Welcome({}: PageProps<{
 
     return (
         <div className="flex flex-col gap-20 h-screen bg-white">
-            <span className="h-32 w-full bg-primary rounded-b-3xl shadow-lg flex items-start justify-center text-white relative">
+            <span className="h-36 w-full bg-primary rounded-b-badge shadow-lg flex items-start justify-center text-white relative">
                 <h1 className="text-2xl font-extrabold mt-5">Shifa Laundry</h1>
 
                 <button
@@ -94,10 +96,14 @@ export default function Welcome({}: PageProps<{
                             {layanan.name}
                         </label>
                     ))}
-                    <PrimaryButton className="border py-2 justify-center gap-2 rounded-xl bg-green-500 hover:bg-green-700">
+                    <label
+                        className="border py-2 flex gap-2 items-center justify-center rounded-xl bg-green-500 hover:bg-green-700 text-white"
+                        onClick={() => setMapsOpen(true)}
+                        htmlFor="my_modal_8"
+                    >
                         <i className="bx bxs-map-alt text-2xl"></i>
                         Lihat Lokasi
-                    </PrimaryButton>
+                    </label>
                 </span>
             </span>
 
@@ -139,6 +145,25 @@ export default function Welcome({}: PageProps<{
                         <label
                             className="modal-backdrop"
                             htmlFor="my_modal_7"
+                        />
+                    </div>
+                </div>
+            )}
+
+            {mapsOpen && (
+                <div>
+                    <input
+                        type="checkbox"
+                        id="my_modal_8"
+                        className="modal-toggle"
+                    />
+                    <div className="modal" role="dialog">
+                        <div className="modal-box bg-transparent w-full">
+                            <Maps />
+                        </div>
+                        <label
+                            className="modal-backdrop"
+                            htmlFor="my_modal_8"
                         />
                     </div>
                 </div>

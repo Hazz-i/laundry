@@ -3,6 +3,7 @@ import { Head } from "@inertiajs/react";
 import { PageProps } from "@/types";
 import Laundry from "../../assets/laundry.png";
 import Header from "@/Components/Header";
+import UserLocation from "@/Components/UserLocation";
 
 export default function Dashboard({ auth }: PageProps) {
     return (
@@ -11,7 +12,10 @@ export default function Dashboard({ auth }: PageProps) {
             <Head title="Dashboard" />
             <header className="w-full px-5 py-1 bg-gray-300 text-slate-600 flex items-center justify-start gap-1">
                 <i className="bx bx-current-location"></i>
-                <small>Yogyakarta</small>
+
+                <small>
+                    <UserLocation />
+                </small>
             </header>
             <div className="carousel w-full h-32">
                 <div className="carousel-item w-full">
