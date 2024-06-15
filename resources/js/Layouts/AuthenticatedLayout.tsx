@@ -9,6 +9,11 @@ const menuList = [
         href: "dashboard",
     },
     {
+        title: "Tambah",
+        icon: "bx bx-pencil",
+        href: "input",
+    },
+    {
         title: "Aktivitas",
         icon: "bx bx-list-ul",
         href: "aktivitas",
@@ -27,7 +32,7 @@ export default function Authenticated({
         <div className="min-h-screen bg-gray-100">
             <main>{children}</main>
 
-            <nav className="position fixed w-full bg-white bottom-0 flex gap-10 justify-center items-center pb-2 pt-0.5 text-slate-700 rounded-t-badge">
+            <nav className="position fixed w-full bg-white bottom-0 flex gap-10 justify-center items-center pb-2 pt-0.5 text-slate-700 rounded-t-badge shadow-inner">
                 {menuList.map((menu) => (
                     <NavLink
                         active={route().current(menu.href)}

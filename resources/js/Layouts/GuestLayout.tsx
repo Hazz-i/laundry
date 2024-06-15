@@ -5,21 +5,10 @@ import logoImage from "../../assets/logo.png";
 export default function Guest({ children }: PropsWithChildren) {
     return (
         <div className="h-screen flex flex-col justify-center items-center pt-6 sm:pt-0 bg-gray-100 px-5">
-            <div className="text-center relative">
-                <h1 className="ms-10 font-bold text-3xl">Shifa Laundry</h1>
-
-                <button
-                    className="flex items-center justify-center rounded-full border border-black absolute -top-1 -end-5"
-                    onClick={() => route("home")}
-                >
-                    <i className="bx bx-question-mark font-bold"></i>
-                </button>
-            </div>
+            <h1 className="font-bold text-3xl">My Laundry</h1>
 
             <div>
-                <Link href="/home">
-                    <img src={logoImage} alt="Logo" />
-                </Link>
+                <img src={logoImage} alt="Logo" />
             </div>
 
             <div className="w-full">{children}</div>

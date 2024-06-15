@@ -1,11 +1,23 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import { PageProps } from "@/types";
 import Laundry from "../../assets/laundry.png";
 import Header from "@/Components/Header";
 import UserLocation from "@/Components/UserLocation";
+import Welcome from "./Home";
+
+const listLaundry = [
+    {
+        id: 1,
+        name: "Shifa Laundry",
+        alamat: "Jalan Seturan, No.123, Seturan, kec. Seturan, Kabupaten Sleman, Daerah Istimewa Yogyakarta",
+        status: "open",
+    },
+];
 
 export default function Dashboard({ auth }: PageProps) {
+    const handleClick = (id: number) => {};
+
     return (
         <AuthenticatedLayout user={auth.user}>
             <Header />
@@ -39,21 +51,28 @@ export default function Dashboard({ auth }: PageProps) {
             </div>
 
             <div className="p-2">
-                <div className="w-full mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-secondary overflow-hidden shadow-sm rounded-lg flex items-center justify-center gap-2 px-2 text-black">
-                        <img src={Laundry} alt="" width={200} height={150} />
-                        <span className="flex flex-col gap-1">
-                            <h1>Shifa Laundry</h1>
-                            <p className="text-[0.7rem]">
-                                Jalan Seturan, No.123, Seturan, kec Seturan,
-                                Kabupaten Sleman, Daerah Istimewa Yogyakarta{" "}
-                            </p>
-                            <small>Jarak: 700m</small>
-                        </span>
-                        <button className="rounded-badge px-3 py-0.5 bg-green-500 text-sm text-white">
-                            Open
+                <div className="w-full mx-auto sm:px-6 lg:px-8 grid gap-1">
+                    {/* CONTENT */}
+                    {listLaundry.map((laundry) => (
+                        <button
+                            className="bg-secondary overflow-hidden shadow-sm rounded-lg flex items-center gap-2 px-2 py-3 text-black"
+                            onClick={() => handleClick(laundry.id)}
+                        >
+                            <img src={Laundry} alt="" />
+                            <span className="flex flex-col items-start gap-0.5">
+                                <h1 className="font-semibold">
+                                    {laundry.name}
+                                </h1>
+                                <p className="text-[0.7rem] text-left">
+                                    {laundry.alamat}
+                                </p>
+                            </span>
+                            <span className="rounded-badge px-3 py-0.5 bg-green-500 text-sm text-white">
+                                {laundry.status}
+                            </span>
                         </button>
-                    </div>
+                    ))}
+                    {/* END CONTENT */}
                 </div>
             </div>
         </AuthenticatedLayout>

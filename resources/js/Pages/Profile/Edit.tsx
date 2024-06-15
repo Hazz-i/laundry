@@ -101,10 +101,15 @@ export default function Edit({
             {/* END TOP CONTENT */}
 
             {/* BODY */}
-            <main className="pt-1 bg-white">
-                <div className="px-5 py-3 bg-white flex items-center justify-between">
-                    <h1 className=" text-black">Ubah Password</h1>
-                    <i className="bx bx-chevron-right"></i>
+            <main className="py-1 grid gap-1">
+                <div
+                    tabIndex={0}
+                    className="collapse collapse-arrow  bg-white text-black rounded-none text-sm"
+                >
+                    <div className="collapse-title">Lupa Password</div>
+                    <div className="collapse-content">
+                        <p></p>
+                    </div>
                 </div>
             </main>
             {/* END BODY */}
