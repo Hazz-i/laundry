@@ -19,7 +19,7 @@ const Input = ({ auth }: PageProps) => {
                     <span className="flex items-center justify-center w-full mb-10">
                         <div className="w-16 h-0.5 bg-slate-400 rounded-badge"></div>
                     </span>
-                    <span className="flex items-center justify-center gap-2">
+                    <span className="flex items-center justify-center gap-2 px-5">
                         <i className="bx bx-map-pin text-xl"></i>
                         <select className="select select-bordered w-full max-w-xs bg-white border-gray-500 border-opacity-20">
                             <option disabled selected>

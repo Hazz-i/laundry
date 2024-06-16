@@ -1,28 +1,25 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LaundryController;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Layanan;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::redirect("/", "/login");
 
-Route::get('home', function() {
-    return Inertia::render('Home');
-})->name('home');
-
-Route::get('aktivitas', function() {
-    return Inertia::render('Aktivitas');    
-})->name('aktivitas');
-
-Route::get('input', function() {
-    return Inertia::render('Input');    
-})->name('input');
-
 Route::middleware(['auth','verified'])->group(function () {
-    Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
-
-    // Route::resource('admin', HomeController::class)->middleware('admin');
+    Route::get('home/{name}', function($name) {
+        return Inertia::render('Home', [
+            'nama' => $name,
+            'layanans' => Layanan::all()
+        ]);
+    })->name('home');
+    
+    Route::resource('dashboard', LaundryController::class);
+    Route::resource('input', PesananController::class);
 });
 
 Route::middleware('auth')->group(function () {

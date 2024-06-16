@@ -1,53 +1,10 @@
 import logoImage from "../../assets/logo.png";
-import { Link, Head } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 import { PageProps } from "@/types";
-import PrimaryButton from "@/Components/PrimaryButton";
 import React, { useState } from "react";
 import Maps from "@/Components/Maps";
 
-const listLayanan = [
-    {
-        id: 1,
-        name: "Reguler",
-        icon: "bx bx-group",
-        description:
-            "Dalam perjalanan rutin Anda, nikmati pengalaman laundry yang tanpa repot dengan layanan reguler kami. Dengan harga yang terjangkau, tim profesional kami memberikan perhatian telaten untuk setiap helai pakaian Anda. Di sini, kami tidak hanya mencuci, tetapi juga merawat pakaian Anda agar tetap tahan lama dan nyaman dipakai setiap hari.",
-        biaya: "Rp 10.000/kg",
-        pengerjaan: "2 Hari",
-    },
-    {
-        id: 2,
-        name: "VIP",
-        icon: "bx bxs-bookmark-star",
-        description:
-            "Jadikan setiap pakaian Anda layaknya bintang dengan layanan VIP kami. Dari pemilihan deterjen khusus hingga perawatan penuh perhatian dari tim ahli kami, setiap detail diurus untuk menciptakan hasil yang istimewa. Ini bukan sekadar mencuci pakaian; ini adalah pengalaman perawatan pribadi untuk pakaian Anda yang membutuhkan sentuhan eksklusif dan perhatian khusus.",
-        biaya: "Rp 25.000/kg",
-        pengerjaan: "2 Hari",
-    },
-    {
-        id: 3,
-        name: "Express",
-        icon: "bx bx-rocket",
-        description:
-            "Ketika waktu adalah segalanya, pilih layanan express kami untuk menghadirkan pakaian bersih dalam sekejap. Tanpa mengorbankan kualitas, layanan ini memprioritaskan kecepatan tanpa meninggalkan jejak kenyamanan. Dengan deterjen terbaik dan proses cuci yang efisien, pakaian Anda siap dipakai ketika Anda membutuhkannya.",
-        biaya: "Rp 12.000/kg",
-        pengerjaan: "1 Hari",
-    },
-    {
-        id: 4,
-        name: "Sepatu",
-        icon: "bx bx-group",
-        description:
-            "Kami tidak hanya merawat pakaian, tapi juga sepatu Anda. Dengan layanan khusus untuk sepatu, kami mengembalikan kilau asli dan kebersihan sepatu favorit Anda. Dari sepatu kasual hingga sepatu formal, percayakan kepada kami untuk menjaga penampilan sepatu Anda tetap prima.",
-        biaya: "Rp 20.000",
-        pengerjaan: "3 Hari",
-    },
-];
-
-export default function Welcome({}: PageProps<{
-    laravelVersion: string;
-    phpVersion: string;
-}>) {
+export default function Welcome({ layanans, nama }: any) {
     const [modalOpen, setModalOpen] = React.useState(false);
     const [mapsOpen, setMapsOpen] = React.useState(false);
     const [selectedLayanan, setSelectedLayanan] = React.useState<any>([{}]);
@@ -55,8 +12,8 @@ export default function Welcome({}: PageProps<{
     const handleModal = (id: number) => {
         setModalOpen(true);
 
-        const filterLayanan = listLayanan.filter(
-            (layanan) => layanan.id === id
+        const filterLayanan = layanans?.filter(
+            (layanan: PageProps) => layanan.id === id
         );
         setSelectedLayanan(filterLayanan);
     };
@@ -64,18 +21,14 @@ export default function Welcome({}: PageProps<{
     return (
         <div className="flex flex-col gap-20 h-screen bg-white">
             <span className="h-36 w-full bg-primary rounded-b-badge shadow-lg flex items-start justify-center text-white relative">
-                <h1 className="text-2xl font-extrabold mt-5">Shifa Laundry</h1>
+                <h1 className="text-2xl font-extrabold mt-5">{nama}</h1>
 
-                <button
+                <Link
                     className="px-1 text-white flex items-center justify-center rounded-full hover:bg-blue-300 absolute top-1 left-2"
-                    onClick={() =>
-                        window.history
-                            ? window.history.back()
-                            : window.location.replace("/")
-                    }
+                    href="/dashboard"
                 >
                     <i className="bx bx-left-arrow-alt font-bold text-2xl"></i>
-                </button>
+                </Link>
 
                 <div className="h-32 w-32 bg-white rounded-full absolute -bottom-16  outline-8">
                     <img src={logoImage} alt="Logo" />
@@ -85,7 +38,7 @@ export default function Welcome({}: PageProps<{
             <span className="px-10">
                 <p className="font-semibold text-black">Layanan: </p>
                 <span className="flex flex-col gap-5 text-center pt-5">
-                    {listLayanan.map((layanan) => (
+                    {layanans.map((layanan: any) => (
                         <label
                             key={layanan.id}
                             className="bg-primary opacity-80 hover:bg-primary hover:opacity-100 border-none py-2 flex items-center justify-center rounded-xl gap-2 btn text-white"
@@ -93,7 +46,7 @@ export default function Welcome({}: PageProps<{
                             htmlFor="my_modal_7"
                         >
                             <i className={`${layanan.icon} text-2xl`}></i>
-                            {layanan.name}
+                            {layanan.nama}
                         </label>
                     ))}
                     <label
@@ -125,19 +78,19 @@ export default function Welcome({}: PageProps<{
                                 </h3>
                             </span>
                             <p className="py-4 text-center">
-                                {selectedLayanan[0].description}
+                                {selectedLayanan[0].deskripsi}
                             </p>
                             <div className="flex flex-col gap-2 mt-5">
                                 <span className="flex justify-between items-center text-sm">
                                     <p className="font-bold">Biaya</p>
                                     <span className="bg-primary py-1 rounded-lg text-white w-28 text-center">
-                                        {selectedLayanan[0].biaya}
+                                        {+selectedLayanan[0].harga}
                                     </span>
                                 </span>
                                 <span className="flex justify-between items-center text-sm">
                                     <p className="font-bold">Pengerjaan</p>
                                     <span className="bg-primary py-1 rounded-lg text-center text-white w-28">
-                                        {selectedLayanan[0].pengerjaan}
+                                        {selectedLayanan[0].durasi}
                                     </span>
                                 </span>
                             </div>

@@ -6,17 +6,17 @@ const menuList = [
     {
         title: "Home",
         icon: "bx bx-home",
-        href: "dashboard",
+        href: "dashboard.index",
     },
     {
         title: "Tambah",
         icon: "bx bx-pencil",
-        href: "input",
+        href: "input.create",
     },
     {
         title: "Aktivitas",
         icon: "bx bx-list-ul",
-        href: "aktivitas",
+        href: "input.index",
     },
     {
         title: "Profil",
