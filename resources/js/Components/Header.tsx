@@ -2,7 +2,7 @@ import TextInput from "./TextInput";
 
 const Header = ({ setCari }: { setCari: any }) => {
     return (
-        <header className="bg-white border-b border-gray-100">
+        <header className="bg-white rounded-b-badge border-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-center items-center h-16 gap-3">
                     <div className="w-full">

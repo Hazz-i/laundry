@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             "durasi" => "2 hari",
         ]);
         Layanan::factory()->create([
-            'nama' => "Spatu",
+            'nama' => "Sepatu",
             'icon' => 'bx bx-group',
             "deskripsi" => "Kami tidak hanya merawat pakaian, tapi juga sepatu Anda. Dengan layanan khusus untuk sepatu, kami mengembalikan kilau asli dan kebersihan sepatu favorit Anda. Dari sepatu kasual hingga sepatu formal, percayakan kepada kami untuk menjaga penampilan sepatu Anda tetap prima.",
             "harga" => 20000,

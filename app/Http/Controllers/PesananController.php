@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laundry;
+use App\Models\Layanan;
 use App\Models\pesanan;
 use App\Http\Requests\StorepesananRequest;
 use App\Http\Requests\UpdatepesananRequest;
@@ -14,7 +16,7 @@ class PesananController extends Controller
     public function index()
     {
         return inertia('Aktivitas', [
-            'pesanan' => pesanan::all()
+            'pesanans' => pesanan::all()
         ]);
     }
 
@@ -24,7 +26,8 @@ class PesananController extends Controller
     public function create()
     {
         return inertia('Input', [
-            'pesanan' => pesanan::all()
+            'laundries' => Laundry::all(),
+            'layanans' => Layanan::all(),
         ]);
     }
 

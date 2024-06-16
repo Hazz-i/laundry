@@ -54,7 +54,7 @@ export default function Dashboard({ auth, laundries }: any) {
                         filteredLaundries?.map((laundry: any) => (
                             <Link
                                 href={`home/${laundry.nama}`}
-                                className="bg-secondary overflow-hidden shadow-lg rounded-lg flex items-center gap-2 px-2 py-3 text-black"
+                                className="bg-secondary shadow-lg rounded-lg flex items-center gap-2 px-2 py-3 text-black"
                                 key={laundry.id}
                             >
                                 <img src={Laundry} alt="" />

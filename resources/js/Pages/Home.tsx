@@ -1,7 +1,7 @@
 import logoImage from "../../assets/logo.png";
 import { Link } from "@inertiajs/react";
 import { PageProps } from "@/types";
-import React, { useState } from "react";
+import React from "react";
 import Maps from "@/Components/Maps";
 
 export default function Welcome({ layanans, nama }: any) {
@@ -74,7 +74,7 @@ export default function Welcome({ layanans, nama }: any) {
                                     className={`${selectedLayanan[0].icon} text-3xl text-primary`}
                                 ></i>
                                 <h3 className="text-2xl font-bold">
-                                    {selectedLayanan[0].name}
+                                    {selectedLayanan[0].nama}
                                 </h3>
                             </span>
                             <p className="py-4 text-center">
@@ -84,7 +84,12 @@ export default function Welcome({ layanans, nama }: any) {
                                 <span className="flex justify-between items-center text-sm">
                                     <p className="font-bold">Biaya</p>
                                     <span className="bg-primary py-1 rounded-lg text-white w-28 text-center">
-                                        {+selectedLayanan[0].harga}
+                                        {new Intl.NumberFormat("id-ID", {
+                                            style: "currency",
+                                            currency: "IDR",
+                                            minimumFractionDigits: 0,
+                                            maximumFractionDigits: 0,
+                                        }).format(+selectedLayanan[0].harga)}
                                     </span>
                                 </span>
                                 <span className="flex justify-between items-center text-sm">
