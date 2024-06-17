@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'icon' => 'bx bx-rocket',
             "deskripsi" => "Ketika waktu adalah segalanya, pilih layanan express kami untuk menghadirkan pakaian bersih dalam sekejap. Tanpa mengorbankan kualitas, layanan ini memprioritaskan kecepatan tanpa meninggalkan jejak kenyamanan. Dengan deterjen terbaik dan proses cuci yang efisien, pakaian Anda siap dipakai ketika Anda membutuhkannya.",
             "harga" => 12000,
-            "durasi" => "2 hari",
+            "durasi" => "1 hari",
         ]);
         Layanan::factory()->create([
             'nama' => "Sepatu",

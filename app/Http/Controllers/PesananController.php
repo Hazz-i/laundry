@@ -7,6 +7,7 @@ use App\Models\Layanan;
 use App\Models\pesanan;
 use App\Http\Requests\StorepesananRequest;
 use App\Http\Requests\UpdatepesananRequest;
+use Carbon\Carbon;
 
 class PesananController extends Controller
 {
@@ -36,7 +37,35 @@ class PesananController extends Controller
      */
     public function store(StorepesananRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        if (empty($request->bukti_bayar)) {
+            $data['bukti_bayar'] = null;
+        }
+    
+        if($data){
+            $layanan = Layanan::where('id', $data['layanan_id'])->get();
+
+            if($layanan[0]->id == 1 || $layanan[0]->id == 2 ){
+                $data['tanggal_selesai'] = Carbon::now()->addDays(2)->format('Y-m-d');
+            }else if($layanan[0]->id == 3){
+                $data['tanggal_selesai'] = Carbon::now()->addDays(1)->format('Y-m-d');
+            }else{
+                $data['tanggal_selesai'] = Carbon::now()->addDays(3)->format('Y-m-d');
+            }
+
+            $data['jumlah_barang'] = intval($data['jumlah_barang']);
+            $data['tanggal_pesan'] = Carbon::now()->format('Y-m-d');
+            
+            if($data["bukti_bayar"] == null){
+                $data["status_pemesanan"] = "pending";
+            }else{
+                $data["status_pemesanan"] = "proses";
+            }
+
+            Pesanan::create($data);
+
+        }   
     }
 
     /**

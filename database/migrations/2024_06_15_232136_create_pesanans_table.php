@@ -17,14 +17,13 @@ return new class extends Migration
             $table->foreignId("layanan_id")->constrained("layanans")->onDelete("cascade");
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade");
             $table->string("nama_pemesan");
+            $table->string("nomor_hp");
             $table->string("barang");
             $table->integer("jumlah_barang");
             $table->float("total_harga");
             $table->date("tanggal_pesan");
             $table->date("tanggal_selesai");
-            $table->string("catatan")->nullable();
             $table->string("bukti_bayar")->nullable();
-            $table->enum("status_pengantaran", ["pending", "proses", "berhasil"])->default("pending");
             $table->enum("status_pemesanan", ["pending", "proses", "berhasil", "dibatalkan"])->default("pending");
             $table->timestamps();
         });

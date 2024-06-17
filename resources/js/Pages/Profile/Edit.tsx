@@ -2,7 +2,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import DeleteUserForm from "./Partials/DeleteUserForm";
 import UpdatePasswordForm from "./Partials/UpdatePasswordForm";
 import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationForm";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, router } from "@inertiajs/react";
 import { PageProps } from "@/types";
 import React from "react";
 import SecondTextInput from "@/Components/SecondTextInput";
@@ -31,18 +31,15 @@ export default function Edit({
             if (result.isConfirmed) {
                 fetch(route("logout"), {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
                 })
                     .then((response) => {
-                        // window.location.href = "/login";
-                        console.log(response);
                         Swal.fire({
                             title: "Logged Out!",
                             text: "Kamu berhasil Log Out.",
                             icon: "success",
                         });
+
+                        router.post(route("logout"));
                     })
                     .catch((error) => {
                         console.error("Error:", error);

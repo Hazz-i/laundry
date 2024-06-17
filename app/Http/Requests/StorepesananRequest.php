@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorepesananRequest extends FormRequest
@@ -11,7 +12,7 @@ class StorepesananRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,15 @@ class StorepesananRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "user_id" => ["required", "integer"],
+            "laundry_id" => ["required", "integer"],
+            "layanan_id" => ["required", "integer"],
+            "nama_pemesan" => ["required", "string"],
+            "nomor_hp" => ["required", "string"],
+            "barang" => ["required", "string"],
+            "jumlah_barang" => ["required", "integer"],
+            "total_harga" => ["required", "integer"],
+            "bukti_bayar" => ["nullable", "string"],
         ];
     }
 }

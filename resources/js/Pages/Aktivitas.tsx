@@ -26,6 +26,7 @@ const shortList = [
 ];
 
 export default function Aktivitas({ auth, pesanans }: any) {
+    console.log(pesanans);
     const [active, setActive] = React.useState<number>(1);
     const [filterPesanan, setFilterPesaann] = React.useState([]);
 

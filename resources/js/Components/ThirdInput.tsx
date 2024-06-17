@@ -6,10 +6,21 @@ type ThirdInputProps = {
     required?: boolean;
     onChange?: any;
     setValue?: any;
+    text?: string;
+    value?: any;
 };
 
 const ThirdInput = (props: ThirdInputProps) => {
-    const { name, type, className, isFocused, required, setValue } = props;
+    const {
+        name,
+        type,
+        className,
+        isFocused,
+        required,
+        setValue,
+        text,
+        value,
+    } = props;
 
     return (
         <label className="form-control w-full">
@@ -19,11 +30,12 @@ const ThirdInput = (props: ThirdInputProps) => {
             <input
                 type={type}
                 className={
-                    "input input-bordered input-sm w-full bg-white border-black" +
+                    "input input-bordered input-sm w-full bg-white border-black border-opacity-20 " +
                     className
                 }
+                value={value}
                 required={required}
-                onChange={(ev) => setValue(ev.target.value)}
+                onChange={(ev) => setValue(text, ev.target.value)}
             />
         </label>
     );
