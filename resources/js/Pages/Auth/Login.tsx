@@ -46,7 +46,7 @@ export default function Login({
                             id="email"
                             name="email"
                             value={data.email}
-                            className="block w-full pl-10"
+                            className="block w-full pl-10 text-black"
                             autoComplete="username"
                             isFocused={true}
                             onChange={(e) => setData("email", e.target.value)}
@@ -65,7 +65,7 @@ export default function Login({
                             type="password"
                             name="password"
                             value={data.password}
-                            className="block w-full pl-10"
+                            className="block w-full pl-10 text-black"
                             autoComplete="current-password"
                             onChange={(e) =>
                                 setData("password", e.target.value)
@@ -79,18 +79,7 @@ export default function Login({
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="block ms-2 mt-4">
-                    {canResetPassword && (
-                        <Link
-                            href={route("password.request")}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                            Lupa password?
-                        </Link>
-                    )}
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
+                <div className="flex items-center justify-end mt-16">
                     <span className="flex gap-2 items-center justify-center">
                         <p className="font-bold text-xl">Masuk</p>
                         <button

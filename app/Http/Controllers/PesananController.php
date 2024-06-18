@@ -8,6 +8,7 @@ use App\Models\pesanan;
 use App\Http\Requests\StorepesananRequest;
 use App\Http\Requests\UpdatepesananRequest;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class PesananController extends Controller
 {
@@ -17,7 +18,7 @@ class PesananController extends Controller
     public function index()
     {
         return inertia('Aktivitas', [
-            'pesanans' => pesanan::all()
+            'pesanans' => pesanan::with(['user', 'layanan', 'laundry'])->orderBy('id', 'desc')->get()
         ]);
     }
 
@@ -91,14 +92,30 @@ class PesananController extends Controller
      */
     public function update(UpdatepesananRequest $request, pesanan $pesanan)
     {
-        //
+        $data = $request->validated();
+     
+        dd($data);
+        // dd($data);  
+        // $pesanan->update($data);
+
+        
+        // return to_route('project.index')->with('success', __("Project \"{$project->name}\" was updated"));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(pesanan $pesanan)
+    public function destroy(String $id)
     {
-        //
+        // $request->validate([
+        //     'id' => ['required', 'current_password'],
+        // ]);
+
+        dd($id);
+        // $pesanan = pesanan::where('id', $id)->first();
+        // $pesanan->delete();
+
+
+        // return redirect()::to('input.index');
     }
 }

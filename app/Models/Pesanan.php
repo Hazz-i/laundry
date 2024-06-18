@@ -24,13 +24,19 @@ class Pesanan extends Model
         "status_pemesanan" ,
     ];  
 
+    protected $hidden = [
+        'laundry_id',
+        'layanan_id',
+        'user_id',
+    ];
+
     public function user(){
-        
+        return $this->belongsTo(User::class);
     }
     public function laundry(){
-        
+        return $this->belongsTo(Laundry::class);
     }
     public function layanan(){
-        
+        return $this->belongsTo(Layanan::class);
     }
 }

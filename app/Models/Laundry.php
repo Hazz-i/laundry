@@ -9,4 +9,9 @@ class Laundry extends Model
 {
     use HasFactory;
 
+
+    public function pesanans()
+    {
+        return $this->hasMany(Pesanan::class);
+    }
 }

@@ -44,7 +44,6 @@ const Input = ({ auth, laundries, layanans }: any) => {
 
     const [title, setTitle] = React.useState("Barang / kg");
     const [pembayaran, setPembayaran] = React.useState<boolean>(false);
-    const [loading, setLoading] = React.useState(false);
 
     useEffect(() => {
         if (data.barang !== "") {
@@ -85,7 +84,7 @@ const Input = ({ auth, laundries, layanans }: any) => {
                 {/* TAMBAH LAUNDRY */}
                 <form
                     className={`rounded-badge shadow-lg shadow-slate-600 bg-white grow ${
-                        pembayaran ? "mt-0 pb-20" : "mt-20 "
+                        pembayaran ? "mt-0 pb-20" : "mt-10"
                     }`}
                     onSubmit={submit}
                 >

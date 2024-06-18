@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LaundryController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Layanan;
+use App\Models\Pesanan;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Symfony\Component\Translation\PseudoLocalizationTranslator;
 
 Route::redirect("/", "/login");
 
@@ -17,6 +18,12 @@ Route::middleware(['auth','verified'])->group(function () {
             'layanans' => Layanan::all()
         ]);
     })->name('home');
+
+    Route::get('detail/{id}', function($id) {
+        return Inertia::render('Detail', [
+            'pesanan' => Pesanan::where('id', $id)->with(['user', 'layanan', 'laundry'])->first()
+        ]);
+    })->name('Detail');
     
     Route::resource('dashboard', LaundryController::class);
     Route::resource('input', PesananController::class);

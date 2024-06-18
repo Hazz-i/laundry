@@ -7,6 +7,7 @@ import { Head, Link, useForm } from "@inertiajs/react";
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
+        email: "",
         number: "",
         password: "",
         password_confirmation: "",
@@ -35,11 +36,11 @@ export default function Register() {
                             type="text"
                             id="name"
                             name="name"
-                            value={data.name}
-                            className="block w-full pl-10"
-                            autoComplete="username"
+                            value={data.email}
+                            className="block w-full pl-10 text-black"
+                            autoComplete="email"
                             isFocused={true}
-                            onChange={(e) => setData("name", e.target.value)}
+                            onChange={(e) => setData("email", e.target.value)}
                             placeholder="example@gmail.com"
                         />
                         <i className="bx bxs-envelope absolute text-xl top-1.5 left-3.5 text-primary"></i>
@@ -55,7 +56,7 @@ export default function Register() {
                             id="name"
                             name="name"
                             value={data.name}
-                            className="block w-full pl-10"
+                            className="block w-full pl-10 text-black"
                             autoComplete="username"
                             isFocused={true}
                             onChange={(e) => setData("name", e.target.value)}
@@ -74,7 +75,7 @@ export default function Register() {
                             type="number"
                             name="number"
                             value={data.number}
-                            className="block w-full pl-10"
+                            className="block w-full pl-10 text-black"
                             autoComplete="number"
                             onChange={(e) => setData("number", e.target.value)}
                             placeholder="number"
@@ -92,7 +93,7 @@ export default function Register() {
                             type="password"
                             name="password"
                             value={data.password}
-                            className="block w-full pl-10"
+                            className="block w-full pl-10 text-black"
                             autoComplete="current-password"
                             onChange={(e) =>
                                 setData("password", e.target.value)
@@ -113,7 +114,7 @@ export default function Register() {
                             type="password"
                             name="password_confirmation"
                             value={data.password_confirmation}
-                            className="block w-full pl-10"
+                            className="block w-full pl-10 text-black"
                             onChange={(e) =>
                                 setData("password_confirmation", e.target.value)
                             }

@@ -1,13 +1,8 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import DeleteUserForm from "./Partials/DeleteUserForm";
-import UpdatePasswordForm from "./Partials/UpdatePasswordForm";
-import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationForm";
-import { Head, Link, router } from "@inertiajs/react";
+import { Head, Link, router, useForm } from "@inertiajs/react";
 import { PageProps } from "@/types";
 import React from "react";
-import SecondTextInput from "@/Components/SecondTextInput";
 import Swal from "sweetalert2";
-import { link } from "fs/promises";
 
 export default function Edit({
     auth,
@@ -17,6 +12,12 @@ export default function Edit({
     const [userName, setUserName] = React.useState<string>(auth.user.name);
     const [email, setEmail] = React.useState<string>(auth.user.email);
     const [phone, setPhone] = React.useState<string>(auth.user.number);
+
+    const { setData, post, processing, errors } = useForm({
+        name: userName,
+        email: email,
+        number: phone,
+    });
 
     const handleLogout = () => {
         Swal.fire({
@@ -98,62 +99,217 @@ export default function Edit({
             {/* END TOP CONTENT */}
 
             {/* BODY */}
-            <main className="py-1 grid gap-1">
+            <main className="py-1 grid ">
+                <button
+                    className="text-sm p-4 rounded-btn bg-white text-black flex items-start"
+                    onClick={() => {
+                        const modal = document.getElementById("my_modal_3");
+                        if (modal instanceof HTMLDialogElement) {
+                            modal.showModal();
+                        }
+                    }}
+                >
+                    Lupa password
+                </button>
                 <div
                     tabIndex={0}
                     className="collapse collapse-arrow  bg-white text-black rounded-none text-sm"
                 >
-                    <div className="collapse-title">Lupa Password</div>
+                    <div className="collapse-title">Profile Informasi</div>
                     <div className="collapse-content">
-                        <p></p>
+                        <label className="form-control w-full">
+                            <div className="label">
+                                <span className="label-text-alt text-black">
+                                    Username
+                                </span>
+                            </div>
+                            <input
+                                type="text"
+                                className={`input input-bordered input-sm w-full border-black border-opacity-20 bg-slate-100`}
+                                value={auth.user.name}
+                            />
+                        </label>
+                        <label className="form-control w-full">
+                            <div className="label">
+                                <span className="label-text-alt text-black">
+                                    Email
+                                </span>
+                            </div>
+                            <input
+                                type="text"
+                                className={`input input-bordered input-sm w-full border-black border-opacity-20 bg-slate-100`}
+                                value={auth.user.email}
+                            />
+                        </label>
+                        <label className="form-control w-full">
+                            <div className="label">
+                                <span className="label-text-alt text-black">
+                                    Number
+                                </span>
+                            </div>
+                            <input
+                                type="text"
+                                className={`input input-bordered input-sm w-full border-black border-opacity-20 bg-slate-100`}
+                                value={auth.user.number}
+                            />
+                        </label>
+                    </div>
+                </div>
+                <div
+                    tabIndex={0}
+                    className="collapse collapse-arrow  bg-white text-black rounded-none text-sm"
+                >
+                    <div className="collapse-title">Tentang Aplikasi</div>
+                    <div className="collapse-content">
+                        <p>
+                            Aplikasi ini marupakan aplikasi pemesanan laundry
+                            yang sudah bekerjasama dengan beberapa mitra laundry
+                            pada area Sleman.
+                        </p>
                     </div>
                 </div>
             </main>
             {/* END BODY */}
 
             {/* MODAL */}
+            {/* UP DATA */}
             <dialog id="my_modal_2" className="modal">
                 <div className="modal-box bg-white text-black">
                     <h3 className="font-bold text-lg">Edit Data</h3>
                     <div className="modal-body grid mt-4 gap-2">
                         <span className="relative flex">
-                            <SecondTextInput
-                                id="name"
-                                type="text"
-                                name="name"
-                                value={userName}
-                                className="block w-full pl-10 rounded-lg border-primary"
-                                autoComplete="name"
-                                onChange={(e) => setUserName(e.target.value)}
-                            />
-
-                            <i className="bx bxs-user absolute text-xl top-1.5 left-3.5 text-primary"></i>
+                            <label className="form-control w-full">
+                                <div className="label">
+                                    <span className="label-text-alt text-black">
+                                        Username
+                                    </span>
+                                </div>
+                                <input
+                                    type="text"
+                                    className={`input input-bordered input-sm w-full border-black border-opacity-20 ${
+                                        userName.length > 0
+                                            ? "bg-slate-100"
+                                            : "bg-white"
+                                    }`}
+                                    value={userName}
+                                    required
+                                    onChange={(ev) => {
+                                        setUserName(ev.target.value);
+                                        setData("name", ev.target.value);
+                                    }}
+                                />
+                            </label>
                         </span>
                         <span className="relative flex">
-                            <SecondTextInput
-                                id="email"
-                                type="email"
-                                name="email"
-                                value={email}
-                                className="block w-full pl-10 rounded-lg border-primary"
-                                autoComplete="email"
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-
-                            <i className="bx bxs-envelope absolute text-xl top-1.5 left-3.5 text-primary"></i>
+                            <label className="form-control w-full">
+                                <div className="label">
+                                    <span className="label-text-alt text-black">
+                                        Email
+                                    </span>
+                                </div>
+                                <input
+                                    type="email"
+                                    className={`input input-bordered input-sm w-full border-black border-opacity-20 ${
+                                        email.length > 0
+                                            ? "bg-slate-100"
+                                            : "bg-white"
+                                    }`}
+                                    value={email}
+                                    required
+                                    onChange={(ev) => {
+                                        setEmail(ev.target.value);
+                                        setData("email", ev.target.value);
+                                    }}
+                                />
+                            </label>
                         </span>
                         <span className="relative flex">
-                            <SecondTextInput
-                                id="number"
-                                type="number"
-                                name="number"
-                                value={phone}
-                                className="block w-full pl-10 rounded-lg border-primary"
-                                autoComplete="number"
-                                onChange={(e) => setPhone(e.target.value)}
-                            />
+                            <label className="form-control w-full">
+                                <div className="label">
+                                    <span className="label-text-alt text-black">
+                                        Nomor
+                                    </span>
+                                </div>
+                                <input
+                                    type="number"
+                                    className={`input input-bordered input-sm w-full border-black border-opacity-20 ${
+                                        phone.length > 0
+                                            ? "bg-slate-100"
+                                            : "bg-white"
+                                    }`}
+                                    value={phone}
+                                    required
+                                    onChange={(ev) => {
+                                        setPhone(ev.target.value);
+                                        setData("number", ev.target.value);
+                                    }}
+                                />
+                            </label>
+                        </span>
+                    </div>
 
-                            <i className="bx bxs-phone absolute text-xl top-1.5 left-3.5 text-primary"></i>
+                    <div className="modal-footer mt-4 flex items-center justify-end w-full">
+                        <button
+                            className="bg-primary text-white px-3 py-2 rounded-lg font-semibold text-sm"
+                            onClick={() => {
+                                const modal =
+                                    document.getElementById("my_modal_2");
+                                if (modal instanceof HTMLDialogElement) {
+                                    modal.close();
+                                }
+                            }}
+                        >
+                            Simpan
+                        </button>
+                    </div>
+                </div>
+
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
+            {/* END UP DATA */}
+
+            {/*
+             UP PASSWORD */}
+            {/* END UP PASSWORD */}
+            <dialog id="my_modal_3" className="modal">
+                <div className="modal-box bg-white text-black">
+                    <h3 className="font-bold text-lg">Lupa Password</h3>
+                    <div className="modal-body grid mt-4 gap-2">
+                        <span className="grid">
+                            <label className="form-control w-full">
+                                <div className="label">
+                                    <span className="label-text-alt text-black">
+                                        Password Baru
+                                    </span>
+                                </div>
+                                <input
+                                    type="text"
+                                    className={`input input-bordered input-sm w-full border-black border-opacity-20 bg-white`}
+                                    required
+                                    onChange={(ev) => {
+                                        setUserName(ev.target.value);
+                                        setData("name", ev.target.value);
+                                    }}
+                                />
+                            </label>
+                            <label className="form-control w-full">
+                                <div className="label">
+                                    <span className="label-text-alt text-black">
+                                        Konfirmasi Password Baru
+                                    </span>
+                                </div>
+                                <input
+                                    type="text"
+                                    className={`input input-bordered input-sm w-full border-black border-opacity-20 bg-white`}
+                                    required
+                                    onChange={(ev) => {
+                                        setUserName(ev.target.value);
+                                        setData("name", ev.target.value);
+                                    }}
+                                />
+                            </label>
                         </span>
                     </div>
 
